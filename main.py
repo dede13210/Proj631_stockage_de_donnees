@@ -1,16 +1,24 @@
-# This is a sample Python script.
+from Donnees import Donnees
+from NoeudsSysteme import NoeudsSysteme
+from Utilisateurs import Utilisateurs
 
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    data0 = Donnees(7,40)
+    data1 = Donnees(8,50)
+
+    hugo = Utilisateurs(1,[7],[6])
+    Adam = Utilisateurs(2,[8],[6])
+    benoit = Utilisateurs(3,[8],[6])
+
+    node0 = NoeudsSysteme(4,40,[5],[])
+    node1 = NoeudsSysteme(5,40,[4,6],[])
+    node2 = NoeudsSysteme(6,50,[],[])
+
+
+
+
+
+
+
+
