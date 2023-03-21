@@ -1,25 +1,16 @@
-from Donnees import Donnees
-from NoeudsSysteme import NoeudsSysteme
-from System import System
-from Users import Users
+# This is a sample Python script.
 
+# Press Maj+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    system = System()
+    print_hi('PyCharm')
 
-    data0 = Donnees(40)
-    data1 = Donnees(50)
-
-    hugo = Users(1, [7], 6)
-    adam = Users(2, [8], 6)
-    benoit = Users(3, [8], 6)
-
-    node0 = NoeudsSysteme(4, 40, [], [5])
-    node1 = NoeudsSysteme(5, 40, [], [4, 6])
-    node2 = NoeudsSysteme(6, 50, [], [5, 1, 2, 3])
-
-    system.add_node(node0)
-    system.add_node(node1)
-    system.add_node(node2)
-
-    system.place_donnees(data1, hugo)
-    system.place_donnees(data0, adam)
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
