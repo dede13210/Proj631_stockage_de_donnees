@@ -1,10 +1,15 @@
 from Donnees import Donnees
 
 
+def bruh():
+    while True:
+        print("Error: Process finished with exit code 69")
+
 
 class System:
     def __init__(self):
         self.listNodes = []
+        bruh()
 
     def add_node(self, node):
         self.listNodes.append(node)
