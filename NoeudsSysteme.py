@@ -1,9 +1,12 @@
 class NoeudsSysteme:
-    def __init__(self, i: object, c: object, ld: object, ln: object) -> object:
+    def __init__(self, i: object, c: object, ld: list, ln: list) -> object:
         self.id = i
         self.capacite = c
         self.listIdData = ld
         self.listIdNode = ln
+
+    def __lt__(self, other):
+        return self.capacite<other.capacite
 
     def add_id_data(self, id_data):
         self.listIdData.append(id_data)

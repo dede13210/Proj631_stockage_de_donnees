@@ -86,7 +86,10 @@ def placer_au_plus_pres(donnee, user, list_node):
             # display_node(current_node)
             # on verifie que le noeud ai de la place puis on regarde la distance au deux users
             if current_node.capacite >= donnee.taille:
-                if distance_user1[current_node] - 1 <= distance_user2[current_node] <= distance_user1[current_node] + 1:
+                if len(listNode) % 2 == 0 and distance_user1[current_node] - 1 <= distance_user2[current_node] <= \
+                        distance_user1[current_node] + 1:
+                    return placer_donnee_node(donnee, current_node)
+                if len(listNode) % 2 == 1 and distance_user1[current_node] <= distance_user2[current_node]:
                     return placer_donnee_node(donnee, current_node)
 
                 # Parcourir les voisins du nœud actuel
@@ -127,11 +130,47 @@ def dijkstra(start_node, list_node):
                 if new_distance < distances[neighbors]:
                     distances[neighbors] = new_distance
                     path[neighbors] = current_node
-
                     # Ajouter le voisin à la file de priorité pour être visité plus tard
                     heapq.heappush(pq, (new_distance, neighbors))
 
     return distances, path
+
+
+def mkp_glouton(list_donnee, liste_node):
+    """
+    Résout le problème du sac à dos multiple à l'aide d'un algorithme glouton.
+
+    :param list_donnee: une liste d'objets à placer dans les sacs à dos
+    :param liste_node: une liste de sacs à dos avec leur capacité maximale
+    :return: une solution au problème du sac à dos multiple
+    """
+
+    # Tri des objets par ordre de valeur décroissante par unité de poids
+    list_donnee = sorted(list_donnee, key=lambda obj: obj.taille, reverse=True)
+
+    # Initialisation des sacs à dos avec des quantités nulles pour chaque objet
+    solution = {obj: {knapsack: 0 for knapsack in liste_node} for obj in list_donnee}
+
+    # Placement des objets dans les sacs à dos
+    for obj in list_donnee:
+        for knapsack in liste_node:
+            if obj.taille <= knapsack.capacite:
+                solution[obj][knapsack] = 1
+                placer_donnee_node(obj, knapsack)
+                break
+
+    return solution
+
+
+
+
+def get_donnee_by_user(user, id_donnee):
+    for iddonne in user.listIdData:
+        if iddonne == id_donnee:
+            print("vous avez acces à la donnee")
+            return True
+    print("vous n'avez pas acces à la donnee")
+    return False
 
 
 if __name__ == '__main__':
@@ -141,13 +180,13 @@ if __name__ == '__main__':
     data3 = Donnees(30)
 
     hugo = Users(1, [7], 6)
-    adam = Users(2, [8], 7)
+    adam = Users(2, [8], 4)
     benoit = Users(3, [8], 6)
 
-    node0 = NoeudsSysteme(4, 40, [], [5, 7])
-    node1 = NoeudsSysteme(5, 40, [], [4, 6])
+    node0 = NoeudsSysteme(4, 40, [], [7, 5])
+    node1 = NoeudsSysteme(5, 40, [], [4, 6, 2])
     node2 = NoeudsSysteme(6, 50, [], [5, 1])
-    node3 = NoeudsSysteme(7, 40, [], [4, 2])
+    node3 = NoeudsSysteme(7, 40, [], [4])
 
     listNode = [node0, node1, node2, node3]
 
@@ -157,7 +196,10 @@ if __name__ == '__main__':
     placer_au_plus_pres(data2, adam, listNode)
     placer_au_plus_pres(data3, benoit, listNode)'''
 
-    placer_au_plus_pres(data3, [adam, hugo], listNode)
+    '''Question 3
+    placer_au_plus_pres(data3, adam, listNode)
     placer_au_plus_pres(data0, hugo, listNode)
-    placer_au_plus_pres(data2, [adam, benoit], listNode)
+    placer_au_plus_pres(data2, [adam, benoit], listNode)'''
 
+    # Question 4
+    mkp_glouton([data0, data1, data2, data3], [node1, node2, node0, node3])
